@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './search-form.css';
 
 export default function SearchForm ({ onSearchSubmitted }) {
     let searchField = null;
@@ -11,9 +12,9 @@ export default function SearchForm ({ onSearchSubmitted }) {
     }
     
     return (
-        <form id="searchForm" onSubmit={searchSubmitted}>
-            <input ref={(e) => searchField = e} type="text" placeholder="Find me Giphys..."></input>
-            <input type="submit" value="search"/>
+        <form className={styles.container} id="searchForm" onSubmit={searchSubmitted}>
+            <input className={styles.searchField} ref={(e) => searchField = e} type="text" placeholder="Find me Giphys..."></input>
+            <input className={styles.button} type="submit" value="search"/>
         </form>            
     );
 
@@ -21,5 +22,5 @@ export default function SearchForm ({ onSearchSubmitted }) {
 }
 
 SearchForm.propTypes = {
-    onSearchSubmitted: PropTypes.func,
+    onSearchSubmitted: PropTypes.func.isRequired,
 }
