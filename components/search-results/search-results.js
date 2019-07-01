@@ -6,10 +6,10 @@ import styles from './search-results.css';
 
 export default function SearchResults (props) {
     console.log('inside search results')
-    console.log(props.results);
+    console.log(props.onThumbnailClick);
     return (
         <div className={styles.container}>
-            {props.results.map( (result, id) => <SearchResult result={result} key={id} />) }
+            {props.results.map( (result, id) => <SearchResult onThumbnailClick={props.onThumbnailClick} result={result} key={id} />) }
         </div>
     );
 }

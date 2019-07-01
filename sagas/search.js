@@ -1,10 +1,15 @@
 import axios from 'axios';
-import { put, call, takeLatest } from 'redux-saga/effects';
-import { SEARCH_PERFORMED, searchSuccess, searchError } from '../actions/search'
+import { put, call, takeLatest, select } from 'redux-saga/effects';
+import { NEW_SEARCH, PERFORM_SEARCH, searchSuccess, searchError } from '../actions/search'
 
 const apiKey = 'rFHZ8UZoSGWl3yVdjYl9T1veY5R6Uw6o';
 
-function* doSearch({ searchTerm }) {
+const selectSearchState = (state) => state.search;
+
+function* doSearch() {
+    const { currentOffset, searchTerm } = yield select(selectSearchState);
+    //console.log('searchterm = ' + JSON.stringify(searchTerm));
+    console.log('searchterm = ' + searchTerm);
     try {
         const searchResults = yield call(
             axios.get,
@@ -13,7 +18,8 @@ function* doSearch({ searchTerm }) {
                 params: {
                     apiKey,
                     q: searchTerm,
-                    limit: 25,
+                    limit: 50,
+                    offset: currentOffset,
                 }
             }
         );
@@ -25,5 +31,6 @@ function* doSearch({ searchTerm }) {
 }
 
 export default function* () {
-    yield takeLatest(SEARCH_PERFORMED, doSearch);
+    yield takeLatest(NEW_SEARCH, doSearch);
+    yield takeLatest(PERFORM_SEARCH, doSearch);
 }

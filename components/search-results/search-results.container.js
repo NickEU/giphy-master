@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import SearchResults from './search-results';
+import { showLightbox } from '../../actions/giphy-display';
 
 function mapStateToProps (state) {
     console.log('store updated');
@@ -11,4 +12,12 @@ function mapStateToProps (state) {
     );
 }
 
-export default connect(mapStateToProps)(SearchResults);
+function mapDispatchToProps (dispatch) {
+    return {
+        onThumbnailClick: (fullUrl) => {
+            dispatch(showLightbox(fullUrl));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
