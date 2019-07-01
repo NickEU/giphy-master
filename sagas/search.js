@@ -31,6 +31,5 @@ function* doSearch() {
 }
 
 export default function* () {
-    yield takeLatest(NEW_SEARCH, doSearch);
     yield takeLatest(PERFORM_SEARCH, doSearch);
 }

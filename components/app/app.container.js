@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import App from './app';
 import { hideLightbox } from '../../actions/giphy-display';
 
-function mapDispatchToProps (dispatch) {
+const mapDispatchToProps = (dispatch) => {
     return {
         onLightboxClick: () => {
             dispatch(hideLightbox());
@@ -11,11 +11,11 @@ function mapDispatchToProps (dispatch) {
     }
 }
 
-function mapStateToProps (state) {
-    const { isShown } = state.giphyDisplay;
+const mapStateToProps = (state) => {
     return {
         ...state,
-        isShown: isShown,
+        isShown: state.giphyDisplay.isShown,
+        giphy: state.giphyDisplay.giphy,
     }
 }
 

@@ -14,8 +14,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
     return {
-        onThumbnailClick: (fullUrl) => {
-            dispatch(showLightbox(fullUrl));
+        onThumbnailClick: (giphy) => {
+            dispatch(showLightbox(giphy));
         }
     }
 }
