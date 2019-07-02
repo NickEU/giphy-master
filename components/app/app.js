@@ -4,7 +4,6 @@ import styles from './app.css';
 import GiphyDisplay from '../giphy-display/giphy-display';
 import PropTypes from 'prop-types';
 import { SearchResult } from '../../lib/custom-types';
-import Search from '../pages/search/search';
 
 const App = (props) => {
     let { children, isShown, onLightboxClick, giphyDisplay } = props;

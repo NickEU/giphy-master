@@ -1,0 +1,8 @@
+.button {  
+    padding: 10px 10px 10px 36px;
+    background: url('../../../images/refresh-icon2.png') 2px 2px no-repeat;
+    background-size: 25%;
+    background-color: yellow; 
+    margin-top: 10px;    
+    margin-bottom: 15px;   
+}

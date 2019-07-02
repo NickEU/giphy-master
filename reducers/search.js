@@ -1,6 +1,5 @@
 import { SEARCH_SUCCESS, NEW_SEARCH, PERFORM_SEARCH, SEARCH_ERROR } from '../actions/search';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { bindActionCreators } from 'redux';
 
 const initialState = {
     results: [],
@@ -22,9 +21,9 @@ export default (state, action) => {
     if (state === undefined) {
         return initialState;
     }
-    console.log('action inside reducer:');
+    console.log('action inside SRC reducer:');
     console.log(action);
-    console.log('state inside reducer:');
+    console.log('state inside SRC reducer:');
     console.log(state);
     switch (action.type) {
         case NEW_SEARCH:

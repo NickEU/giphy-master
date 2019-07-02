@@ -1,5 +1,4 @@
-import Search from './search';
+import Trending from './trending';
 import createContainer from '../infinite-search/infinite-search.container';
 
-export default createContainer(Search);
-
+export default createContainer(Trending);

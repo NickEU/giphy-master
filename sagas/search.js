@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { put, call, takeLatest, select } from 'redux-saga/effects';
-import { NEW_SEARCH, PERFORM_SEARCH, searchSuccess, searchError } from '../actions/search'
+import { PERFORM_SEARCH, searchSuccess, searchError } from '../actions/search'
 
 const apiKey = 'rFHZ8UZoSGWl3yVdjYl9T1veY5R6Uw6o';
 
@@ -8,19 +8,25 @@ const selectSearchState = (state) => state.search;
 
 function* doSearch() {
     const { currentOffset, searchTerm } = yield select(selectSearchState);
-    //console.log('searchterm = ' + JSON.stringify(searchTerm));
     console.log('searchterm = ' + searchTerm);
     try {
+        let apiCallUrl = 'https://api.giphy.com/v1/gifs/';
+        let params = {
+            apiKey,
+            limit: 50,
+            offset: currentOffset,
+        };
+        if (searchTerm === undefined) {
+            apiCallUrl += 'trending';
+        } else {
+            apiCallUrl += 'search';
+            params.q = searchTerm;
+        }
         const searchResults = yield call(
             axios.get,
-            'https://api.giphy.com/v1/gifs/search',
+            apiCallUrl,
             {
-                params: {
-                    apiKey,
-                    q: searchTerm,
-                    limit: 50,
-                    offset: currentOffset,
-                }
+                params,
             }
         );
         yield put(searchSuccess(searchResults.data.data));
