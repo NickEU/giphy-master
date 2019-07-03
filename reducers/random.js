@@ -6,7 +6,7 @@ const initialState = {
     result: undefined,
 };
 
-function searchResultTransformer (rawResult) {
+function randomResultTransformer (rawResult) {
     const { images } = rawResult;
     return {
         thumbnail: images.fixed_width_downsampled.url,
@@ -30,7 +30,7 @@ export default (state, action) => {
         case GET_RANDOM_SUCCESS:
             return {
                 ...state,
-                result: searchResultTransformer(action.result),
+                result: randomResultTransformer(action.result),
             };
         case LOCATION_CHANGE:
             return initialState;

@@ -4,7 +4,7 @@ import { GET_RANDOM, getRandomSuccess, getRandomError } from '../actions/random'
 
 const apiKey = 'rFHZ8UZoSGWl3yVdjYl9T1veY5R6Uw6o';
 
-function* doSearch() {
+function* getRandomGiphy() {
     try {
         const randomResult = yield call(
             axios.get,
@@ -23,5 +23,5 @@ function* doSearch() {
 }
 
 export default function* () {
-    yield takeLatest(GET_RANDOM, doSearch);
+    yield takeLatest(GET_RANDOM, getRandomGiphy);
 }
